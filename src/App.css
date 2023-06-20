@@ -1,38 +1,207 @@
-.App {
+#logo {
+  padding: 8px 0 4px 16px;
+  width: 8%;
+}
+
+#header-container {
+  margin-top: 0;
+  display: flex;
+  box-shadow: 0 0 8px 0 #69E9F5;
+  width: 100%;
+  flex-direction: row;
+}
+
+#location-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 16px 30% 0;
+  box-shadow: 0 2px 4px #69E9F5;
+  border-radius: 16px;
+}
+
+#filtered-container {
+  display: flex;
+  flex-direction: row;
+  margin: 16px 30% 0;
+  gap: 8px;
+}
+
+#state-selector-container {
+  width: 30%;
+  justify-content: center;
+  box-shadow: 0 2px 4px #69E9F5;
+  border-radius: 16px;
+}
+
+#filtered-location-selector-container {
+  width: 70%;
+  justify-content: center;
+  box-shadow: 0 2px 4px #69E9F5;
+  border-radius: 16px;
+}
+
+#location-selector {
+  display: flex;
+  flex-direction: row;
   text-align: center;
+  border-radius: 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  padding: 4px 4px;
+  font-family: Verdana;
+  color: #645FCD;
+  font-size: small;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#state-selector{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  border-radius: 16px;
+  border: 1px solid #645FCD;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 4px 4px;
+  width: 100%;
+  font-family: Verdana;
+  color: #645FCD;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#filtered-location-selector {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  border-radius: 16px;
+  border: 1px solid #645FCD;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  padding: 4px 4px;
+  font-family: Verdana;
+  color: #645FCD;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#app-body{
+  font-family: Verdana;
+  color: #645FCD;
+  font-size: small;
+}
+
+body {
+  margin: unset;
+  padding: unset;
+}
+
+.card-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-content: center;
+  font-family: Verdana;
+  margin: 16px 30% 0px;
+  border: 1px #645FCD solid;
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 2px 4px #69E9F5;
+  text-align: center;
+}
+
+p {
+  margin: unset !important;
+}
+
+#date-selectors-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 16px 25% 0px;
+}
+
+#date-selectors-container p {
+  margin: 0 0 16px !important;
+}
+
+#date-selectors {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  row-gap: 12px;
+  column-gap: 16px;
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+#date-selectors input {
+  text-align: center;
+  color: #645FCD;
+  margin: 0 0 0 8px;
+  padding: 4px 4px;
+  border-radius: 16px;
+  border: 1px solid #645FCD;
+  box-shadow: 0 2px 4px #69E9F5;
+  flex: 1;
+  font-family: Verdana;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+label {
+  margin: 0 4px 0 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+#state-filter-switch {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+#date-selectors label {
+  display: flex;
+  justify-content: space-around;
+  flex: 1;
+}
+
+.search-button {
+  border-radius: 16px;
+  border: 1px solid #645FCD;
+  background-color: #645FCD;
+  color: #ffffff;
+  font-family: Verdana;
+  box-shadow: 0 2px 4px #69E9F5;
+}
+
+.search-button:hover {
+  cursor: pointer;
+}
+
+.appointment-list-item {
+  color: #645FCD;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px #645FCD solid;
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 2px 4px #69E9F5;
+  text-align: center;
+  margin: 8px;
+}
+
+.modal-title {
+  color: #645FCD !important;
+}
+
+#page-number-holder {
+  display: flex;
+  flex-direction: row;
+}
+
+.page-number {
+  display: flex;
 }
