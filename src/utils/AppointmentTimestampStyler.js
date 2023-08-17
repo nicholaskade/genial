@@ -8,7 +8,7 @@ export function styleTimestamp(timestamp){
     let minute = timestamp.slice(14);
 
     let styledTime = (hour > 12) ? `0${hour - 12}:${minute} pm` : 
-        ((hour == 12) ? 
+        ((parseInt(hour) === 12) ? 
             `12:${minute} pm`: `${hour}:${minute} am`);
             
     let styledDay = (day < 10) ? day.slice(1) : day;

@@ -1,6 +1,5 @@
-import { styleTimestamp } from "./utils/AppointmentTimestampStyler";
+import { styleTimestamp } from "../utils/AppointmentTimestampStyler";
 import DateSelector from "./DateSelector";
-import AppointmentModal from "./AppointmentModal";
 
 function NextAvailable( { 
     nextAvailable, 

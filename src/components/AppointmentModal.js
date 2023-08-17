@@ -1,6 +1,6 @@
 import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
-import { styleTimestamp } from "./utils/AppointmentTimestampStyler";
+import { styleTimestamp } from "../utils/AppointmentTimestampStyler";
 
 function AppointmentModal({
     appointmentList
@@ -27,7 +27,7 @@ function AppointmentModal({
     function goBack() {
         if (pageIndices[0] <= 0) {
             setPageIndices([0, 9]);
-            return
+            return;
         } else {
             setPageNumber(pageNumber - 1);
             setPageIndices([pageIndices[0] - 10, pageIndices[1] - 10]);
@@ -36,7 +36,7 @@ function AppointmentModal({
 
     function nextPage() {
         if (pageIndices[1] >= appointmentList.length - 1) {
-            return
+            return;
         } else {
             setPageNumber(pageNumber + 1);
             setPageIndices([pageIndices[1] + 1, pageIndices[1] + 10]);
@@ -63,7 +63,7 @@ function AppointmentModal({
 
                 <Modal.Body>
                     
-                    {listAppointments}
+                    { listAppointments }
 
                     {
                         appointmentList.length > 10 ? 
@@ -81,7 +81,7 @@ function AppointmentModal({
                 </Modal.Footer>
             </Modal>
         </>
-    )
-};
+    );
+}
 
 export default AppointmentModal;

@@ -1,11 +1,17 @@
-function LocationSelector({ locations, locationClicked, stateSorter, setStateSelected, stateSelected }) {
+function LocationSelector({ 
+    locations, 
+    locationClicked, 
+    stateSorter, 
+    setStateSelected, 
+    stateSelected 
+}) {
     let validStates = [];
     
     locations.map((location) => {
         if (!validStates.includes(location.state) && location.countryCode === "US") {
-            validStates.unshift(location.state);
-            };
-        });
+            return validStates.unshift(location.state);
+        }
+    });
 
     validStates.sort();
 
@@ -28,7 +34,7 @@ function LocationSelector({ locations, locationClicked, stateSorter, setStateSel
     });
 
     const createSortedLocationElements = locations.map((location) => {
-        if (location.countryCode === "US" && location.shortName !== "Permanently Closed" && location.state == stateSelected) {
+        if (location.countryCode === "US" && location.shortName !== "Permanently Closed" && location.state === stateSelected) {
             return (
                 <option key={location.id} value={location.id}>
                     {location.name}

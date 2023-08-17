@@ -1,12 +1,17 @@
 import Modal from "react-bootstrap/Modal";
-import failure from "./failed.mp3";
-import success from "./success.mp3";
+import failure from "../failed.mp3";
+import success from "../success.mp3";
 import useSound from "use-sound";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-function ScanModal() {
+function ScanModal({
+    appointmentList,
+    showScanModal, 
+    setShowScanModal
+}) {
 
-    const [showScanModal, setShowScanModal] = useState(false);
+    const [scanMode, setScanMode] = useState(false);
+
     const [playFailure] = useSound(failure);
     const [playSuccess] = useSound(success);
 
@@ -15,6 +20,17 @@ function ScanModal() {
     const dummy = {
         startTimestamp: new Date("2023-10-10T09:15")
     };
+
+    useEffect(() => {
+        if (scanMode && appointmentList.length > 0) {
+            console.log(appointmentList);
+            playSuccess();
+            setScanMode(false);
+        } else if (scanMode && appointmentList.length !== undefined) {
+            console.log(appointmentList);
+            playFailure();
+        }
+    }, [appointmentList])
 
     function hideScanModal() {
         setShowScanModal(false);
@@ -42,7 +58,6 @@ function ScanModal() {
             setTimeout(beginScanning, 10000);
         };
 
-        assessResults();
     };
 
     return (
@@ -56,6 +71,14 @@ function ScanModal() {
                 <Modal.Header closeButton>
 
                 </Modal.Header>
+
+                <Modal.Body>
+
+                </Modal.Body>
+            
+                <Modal.Footer>
+
+                </Modal.Footer>
             </Modal>
         </>
     );

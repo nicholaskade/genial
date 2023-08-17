@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from "react";
-import Header from "./Header";
-import LocationSelector from "./LocationSelector";
-import LocationCard from "./LocationCard";
-import NextAvailable from "./NextAvailable";
+import Header from "./components/Header";
+import LocationSelector from "./components/LocationSelector";
+import LocationCard from "./components/LocationCard";
+import NextAvailable from "./components/NextAvailable";
 import { getCurrentDate } from "./utils/DateFunction";
-import StateFilterSwitch from "./StateFilterSwitch";
+import StateFilterSwitch from "./components/StateFilterSwitch";
 
 function App() {
     const [locations, setLocations] = useState([]);
