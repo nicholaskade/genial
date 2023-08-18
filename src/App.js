@@ -113,6 +113,12 @@ function App() {
                 evaluateSlots(response);
                 populateAppointments(response);
         });
+
+        if (nextAvailableInRange !== undefined) {
+            if (new Date(nextAvailableInRange.startTimestamp) < new Date(nextAvailable.startTimestamp)) {
+                setNextAvailable(nextAvailableInRange);
+            }
+        }
     }
 
     function handleDismissDisclaimer() {

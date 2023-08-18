@@ -233,7 +233,7 @@ label {
 #search-results-container {
   display: flex;
   justify-content: center;
-  height: 75px;
+  height: 100px;
   gap: 4px;
 }
 

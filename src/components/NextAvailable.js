@@ -29,7 +29,7 @@ function NextAvailable( {
         fetchNextAvailable(locationId);    
         setTimeout(() => {
             setRefreshState(false);
-        }, 1500)
+        }, 1000)
     }
 
     if (locationId !== "default") {

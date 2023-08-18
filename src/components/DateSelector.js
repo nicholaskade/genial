@@ -1,4 +1,6 @@
 import AppointmentInRange from "./AppointmentInRange";
+import { useState } from "react";
+import Spinner from "react-bootstrap/Spinner";
 
 function DateSelector( { 
     getCurrentDate, 
@@ -17,10 +19,20 @@ function DateSelector( {
     appointmentList
 } ) {
 
+    function handleRefresh() {
+        setSearchState(true);
+        setTimeout(() => {
+            setSearchState(false);
+        }, 1000);
+    }
+
     function handleSearch() {
         setSearchMode(true);
+        handleRefresh();
         fetchNextAvailableInRange(locationId, startDate, endDate);
     };
+
+    const [searchState, setSearchState] = useState(false);
 
     if (locationId !== "default") {
         return(
@@ -40,16 +52,21 @@ function DateSelector( {
                     </div>
                 </div>
                 {
-                    nextAvailable !== undefined && nextAvailable.length > 0 ? 
-                        <AppointmentInRange 
-                            startDate={startDate} 
-                            endDate={endDate} 
-                            locationId={locationId} 
-                            nextAvailableInRange={nextAvailableInRange} 
-                            searchMode={searchMode}
-                            appointmentList={appointmentList}
-                            fetchNextAvailableInRange={fetchNextAvailableInRange}
-                        /> : <></>
+                    searchState ?
+                        <div id="search-results-container" className="card-container">
+                            <Spinner variant="border"/> 
+                        </div>
+                            :
+                        nextAvailable !== undefined && nextAvailable.length > 0 ? 
+                            <AppointmentInRange 
+                                startDate={startDate} 
+                                endDate={endDate} 
+                                locationId={locationId} 
+                                nextAvailableInRange={nextAvailableInRange} 
+                                searchMode={searchMode}
+                                appointmentList={appointmentList}
+                                fetchNextAvailableInRange={fetchNextAvailableInRange}
+                            /> : <></>
                 }
             </div>
         )

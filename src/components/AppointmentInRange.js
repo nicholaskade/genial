@@ -20,7 +20,7 @@ function AppointmentInRange( {
         if (nextAvailableInRange !== undefined && nextAvailableInRange.length !== 0) {
             let appointmentInfo = styleTimestamp(nextAvailableInRange[0].startTimestamp);
             return (
-                <div id="next-available-container" className="card-container">
+                <div id="search-results-container" className="card-container">
                     <p>Next Available Appointment in Range:</p>
                     <p>{appointmentInfo}</p>
                     <div>
