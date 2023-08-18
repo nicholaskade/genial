@@ -10,11 +10,11 @@ function LocationCard({ locations, locationId }) {
         }
     }
 
-    const createLocationBox = locations.map((location) => {
+    const createLocationBox = locations.map((location, i) => {
         if (location.id === parseInt(locationId)) {
             let phoneNumber = phoneNumberStyler(location.phoneNumber);
             return (
-                <div className="card-container">
+                <div className="card-container" key={i}>
                     <p>{location.name}</p>
                     <p>{location.address}</p>
                     { addressAdditional(location) }

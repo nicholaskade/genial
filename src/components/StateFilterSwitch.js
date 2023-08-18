@@ -3,7 +3,7 @@ function StateFilterSwitch( { stateSorterSwitchFlipped } ){
         <div id="state-filter-switch-container">
             <label id="state-filter-switch" onChange={stateSorterSwitchFlipped}>
                 Filter by State
-                <input type="checkbox"/>
+                <input id="state-filter-checkbox" type="checkbox"/>
             </label>
         </div>
     )

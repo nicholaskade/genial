@@ -14,10 +14,10 @@ function AppointmentModal({
 
     const listAppointments = 
         appointmentList.length > 0 ?
-            appointmentList.slice(pageIndices[0], pageIndices[1]).map((appointment) => {
+            appointmentList.slice(pageIndices[0], pageIndices[1]).map((appointment, i) => {
                 return (
                     <>
-                        <div className="appointment-list-item">
+                        <div className="appointment-list-item" key={i}>
                             <p>{styleTimestamp(appointment.startTimestamp)}</p>
                         </div>
                     </>
@@ -51,14 +51,14 @@ function AppointmentModal({
     
     return (
         <>
-            <button onClick={() => setShowAppointmentModal(!showAppointmentModal)}>View All in Range</button>
+            <button id="view-all-button" className="search-button" onClick={() => setShowAppointmentModal(!showAppointmentModal)}>View All in Range</button>
 
             <Modal
                 show={showAppointmentModal}
                 onHide={closeModal}
             >
-                <Modal.Header closeButton>
-                    <Modal.Title>Available Appointments</Modal.Title>
+                <Modal.Header>
+                    <p className="modal-header-text">Available Appointments</p>
                 </Modal.Header>
 
                 <Modal.Body>
@@ -77,7 +77,7 @@ function AppointmentModal({
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <button onClick={() => closeModal()}>Close</button>
+                    <button className="search-button" onClick={() => closeModal()}>Close</button>
                 </Modal.Footer>
             </Modal>
         </>

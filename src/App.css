@@ -154,11 +154,23 @@ label {
 
 }
 
+#state-filter-checkbox {
+  margin: 1px 0 0 4px;
+}
+
 #state-filter-switch {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: 16px 0;
+}
+
+#state-filter-switch-container {
+  margin: 16px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
 }
 
 #date-selectors label {
@@ -204,4 +216,39 @@ label {
 
 .page-number {
   display: flex;
+}
+
+#scan-modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#next-available-container {
+  display: flex;
+  justify-content: center;
+  height: 95px;
+}
+
+#search-results-container {
+  display: flex;
+  justify-content: center;
+  height: 75px;
+  gap: 4px;
+}
+
+#view-all-button, #refresh-button {
+  margin: 4px 0 0;
+}
+
+#notification-disclaimer-body {
+  color:#645FCD;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-header-text {
+  color:#645FCD;
 }

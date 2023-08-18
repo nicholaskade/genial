@@ -5,6 +5,7 @@ import LocationCard from "./components/LocationCard";
 import NextAvailable from "./components/NextAvailable";
 import { getCurrentDate } from "./utils/DateFunction";
 import StateFilterSwitch from "./components/StateFilterSwitch";
+import Modal from "react-bootstrap/Modal";
 
 function App() {
     const [locations, setLocations] = useState([]);
@@ -18,21 +19,22 @@ function App() {
     const [nextAvailable, setNextAvailable] = useState([]);
     const [nextAvailableInRange, setNextAvailableInRange] = useState([]);
     const [searchMode, setSearchMode] = useState(false);
-    const [appointmentList, setAppointmentList] = useState([]);
+    const [appointmentList, setAppointmentList] = useState(undefined);
+    const [showNotificationDisclaimer, setShowNotificationDisclaimer] = useState(true);
 
     function startDateClicked(value){
         setStartDate(value);
         setEndDateMin(value);
         setNextAvailableInRange([]);
         setSearchMode(false);
-    };
+    }
 
     function endDateClicked(value){
         setEndDate(value);
         setStartDateMax(value);
         setNextAvailableInRange([]);
         setSearchMode(false);
-    };
+    }
 
     function locationClicked(e){
         setLocationId(e.target.value);
@@ -40,7 +42,7 @@ function App() {
         setNextAvailableInRange([]);
         setNextAvailable([]);
         setSearchMode(false);
-    };
+    }
 
     function stateSorterSwitchFlipped(){
         setLocationId("default");
@@ -49,7 +51,7 @@ function App() {
         setEndDate(getCurrentDate());
         setEndDateMin(getCurrentDate());
         setStartDateMax([]);
-    };
+    }
 
     useEffect(() => {
         fetch('https://ttp.cbp.dhs.gov/schedulerapi/locations/?temporary=false&inviteOnly=false&operational=true&serviceName=Global%20Entry')
@@ -68,19 +70,20 @@ function App() {
                 if (a.state === b.state && a.name > b.name) {
                     return 1;
                 }
-            };
+            }
             res.sort(compareResponse);
             setLocations(res);
-        })
+        });
       }, []);
 
     function fetchNextAvailable(locationId) {
+        console.log("Fetching next available appointment...");
         fetch(`https://ttp.cbp.dhs.gov/schedulerapi/slots?orderBy=soonest&limit=1&locationId=${locationId}&minimum=1`)
         .then(response => response.json())
         .then(res => {
             setNextAvailable(res);
-        });
-    };
+        })
+    }
 
     function fetchNextAvailableInRange(locationId, startDate, endDate) {
         let start = new Date(`${startDate}T00:00:01`);
@@ -89,18 +92,20 @@ function App() {
         function evaluateSlots(appointmentArray) {
             for (let i = 0; i < appointmentArray.length; i++) {
                 if (new Date(appointmentArray[i].startTimestamp) >= start && new Date(appointmentArray[i].endTimestamp) <= end) {
+                    console.log("Appointments found!");
                     setNextAvailableInRange([ appointmentArray[i] ]);
                     return;
-                };
-                setNextAvailableInRange([]);
-            };
-        };
+                }
+            }
+            console.log("No appointments found.");
+            setNextAvailableInRange([]);
+        }
 
         function populateAppointments(appointmentArray) {
             const filteredAppointments =  appointmentArray.filter(appointment => new Date(appointment.startTimestamp) >= start && new Date(appointment.endTimestamp) <= end);
-            setAppointmentList(filteredAppointments);
+            filteredAppointments.length > 0 ? setAppointmentList(filteredAppointments) : setAppointmentList(undefined);
             console.log(filteredAppointments);
-        };
+        }
         
         fetch(`https://ttp.cbp.dhs.gov/schedulerapi/slots?orderBy=soonest&locationId=${locationId}&limit=1000`)
             .then(response => response.json())
@@ -108,7 +113,12 @@ function App() {
                 evaluateSlots(response);
                 populateAppointments(response);
         });
-    };
+    }
+
+    function handleDismissDisclaimer() {
+        Notification.requestPermission();
+        setShowNotificationDisclaimer(false);
+    }
 
     return (
         <>
@@ -135,7 +145,8 @@ function App() {
                 />
 
                 <NextAvailable 
-                    fetchNextAvailableInRange={fetchNextAvailableInRange} 
+                    fetchNextAvailableInRange={fetchNextAvailableInRange}
+                    fetchNextAvailable={fetchNextAvailable}
                     nextAvailable={nextAvailable} 
                     locationId={locationId} 
                     startDateClicked={startDateClicked} 
@@ -152,6 +163,23 @@ function App() {
                 />
                 
             </div>
+
+            <Modal 
+                show={showNotificationDisclaimer}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header><p className="modal-header-text">Notifications Disclaimer</p></Modal.Header>
+                <Modal.Body>
+                    <div id="notification-disclaimer-body">
+                        <p>Genial uses browser notifications to keep you updated on the availability of Global Entry Interview appointments.</p>
+                        <p>We will not send you notifications unless you use our scan function. Notification permissions can be adjusted in your browser at any time.</p>
+                    </div>
+                </Modal.Body>
+                <Modal.Footer>
+                    <button className="search-button" onClick={() => handleDismissDisclaimer()}>I Understand</button>
+                </Modal.Footer>
+            </Modal>
         </>
     );
 };

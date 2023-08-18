@@ -1,5 +1,7 @@
 import { styleTimestamp } from "../utils/AppointmentTimestampStyler";
+import Spinner from "react-bootstrap/Spinner";
 import DateSelector from "./DateSelector";
+import { useState } from "react";
 
 function NextAvailable( { 
     nextAvailable, 
@@ -11,22 +13,41 @@ function NextAvailable( {
     startDateMax,
     startDate,
     endDate,
+    fetchNextAvailable,
     fetchNextAvailableInRange,
     nextAvailableInRange,
     searchMode,
     setSearchMode,
     appointmentList
  } ) {
+
+    const [refreshState, setRefreshState] = useState(false);
+
+    function handleRefresh() {
+        setRefreshState(true);
+        setSearchMode(false);
+        fetchNextAvailable(locationId);    
+        setTimeout(() => {
+            setRefreshState(false);
+        }, 1500)
+    }
+
     if (locationId !== "default") {
         if (nextAvailable.length !== 0) {
             let appointmentInfo = nextAvailable.map((appointment) => styleTimestamp(appointment.startTimestamp));
             return (
                 <div>
                     <div id="next-available-container" className="card-container">
-                        <p>Next Available Appointment:</p>
-                        <p>
-                            {appointmentInfo}
-                        </p>
+                        {
+                            refreshState ?
+                                <Spinner variant="border" role="info"/>
+                                    :
+                                <>
+                                    <p>Next Available Appointment:</p>
+                                    <p>{ appointmentInfo }</p>
+                                    <button id="refresh-button" className="search-button" onClick={() => handleRefresh()}>Refresh</button>
+                                </>
+                        }
                     </div>
                     <div>
                         <DateSelector 

@@ -2,13 +2,16 @@ import { styleTimestamp } from "../utils/AppointmentTimestampStyler";
 import AppointmentModal from "./AppointmentModal";
 import ScanModal from "./ScanModal";
 
-import useState from "react";
+import { useState } from "react";
 
 function AppointmentInRange( { 
     locationId, 
     nextAvailableInRange,
+    fetchNextAvailableInRange,
     searchMode,
-    appointmentList
+    appointmentList,
+    startDate,
+    endDate
 } ) {
 
     const [showScanModal, setShowScanModal] = useState(false);
@@ -30,12 +33,16 @@ function AppointmentInRange( {
         } else {
             if (searchMode) {
                 return (
-                    <div id="next-available-container" className="card-container">
+                    <div id="search-results-container" className="card-container">
                         <p>There are no appointments available for the chosen dates at this time.</p>
-                        <button>Scan for Appointments</button>
                         <ScanModal 
                             showScanModal={showScanModal}
                             setShowScanModal={setShowScanModal}
+                            locationId={locationId}
+                            startDate={startDate}
+                            endDate={endDate}
+                            fetchNextAvailableInRange={fetchNextAvailableInRange}
+                            appointmentList={appointmentList}
                         />
                     </div>
                 );
