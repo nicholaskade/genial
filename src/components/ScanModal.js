@@ -27,7 +27,10 @@ function ScanModal({
     scanModeRef.current = scanMode;
 
     useEffect(() => {
-        if (scanModeRef.current && appointmentList !== undefined) {
+        if (counter === 60) {
+            setScanMode(false);
+
+        } else if (scanModeRef.current && appointmentList !== undefined) {
             console.log(appointmentList);
             playSuccess();
             setScanMode(false);
@@ -58,6 +61,12 @@ function ScanModal({
         setCounter(1);
     }
 
+    function handleRestart() {
+        setScanMode(true);
+        fetchNextAvailableInRange(locationId, startDate, endDate);
+        setCounter(1);
+    }
+
     return (
         <>
             <button className="search-button" onClick={() => openScanModal()}>Scan for Appointments</button>
@@ -76,10 +85,16 @@ function ScanModal({
                                 <p>We have located an appointment for you!</p>
                                     :
                                 counter > 1 ? 
-                                    <>
-                                        <p>We've scanned for your appointment {counter} times.</p>
-                                        <Spinner animation="grow" variant="info"/>
-                                    </> 
+                                    counter < 60 ?
+                                        <>
+                                            <p>We've scanned for your appointment {counter} times.</p>
+                                            <Spinner animation="grow" variant="info"/>
+                                        </> 
+                                        :
+                                        <>
+                                            <p>You have exceeded the maximum number of scans for this search. Please try again.</p>
+                                            <button className="search-button" onClick={() => handleRestart()}>Restart Scanner</button>
+                                        </>
                                         : 
                                     <>
                                         <p>We've scanned for your appointment 1 time.</p> 
