@@ -22,6 +22,7 @@ function NextAvailable( {
  } ) {
 
     const [refreshState, setRefreshState] = useState(false);
+    const ttpURL = "https://ttp.cbp.dhs.gov/schedulerui/schedule-interview/location?lang=en&vo=true";
 
     function handleRefresh() {
         setRefreshState(true);
@@ -29,7 +30,11 @@ function NextAvailable( {
         fetchNextAvailable(locationId);    
         setTimeout(() => {
             setRefreshState(false);
-        }, 1000)
+        }, 1000);
+    }
+
+    function handleBook() {
+        window.open(ttpURL, "_blank");
     }
 
     if (locationId !== "default") {
@@ -45,7 +50,13 @@ function NextAvailable( {
                                 <>
                                     <p>Next Available Appointment:</p>
                                     <p>{ appointmentInfo }</p>
-                                    <button id="refresh-button" className="search-button" onClick={() => handleRefresh()}>Refresh</button>
+                                    <div id="next-available-button-container">
+                                        <button id="refresh-button" className="search-button" onClick={() => handleRefresh()}>Refresh</button>
+                                        <button className="search-button" id="book-button" onClick={() => handleBook()}>Book Now</button>
+                                    </div>
+                                    <div id="scan-message-container">
+                                        <p>Need an appointment sooner? Select your dates and use our scan feature below.</p>
+                                    </div>  
                                 </>
                         }
                     </div>

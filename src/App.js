@@ -175,7 +175,7 @@ function App() {
                 backdrop="static"
                 keyboard={false}
             >
-                <Modal.Header><p className="modal-header-text">Notifications Disclaimer</p></Modal.Header>
+                <Modal.Header><p className="modal-text">Notifications Disclaimer</p></Modal.Header>
                 <Modal.Body>
                     <div id="notification-disclaimer-body">
                         <p>Genial uses browser notifications to keep you updated on the availability of Global Entry Interview appointments.</p>

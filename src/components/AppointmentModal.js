@@ -6,11 +6,17 @@ function AppointmentModal({
     appointmentList
 }) {
 
-    const [showAppointmentModal, setShowAppointmentModal] = useState(false);
+    const ttpURL = "https://ttp.cbp.dhs.gov/schedulerui/schedule-interview/location?lang=en&vo=true";
 
-    const pageCount = Math.ceil(appointmentList.length / 10);
+    function handleBook() {
+        window.open(ttpURL, "_blank");
+    }
+
+    const [showAppointmentModal, setShowAppointmentModal] = useState(false);
     const [pageIndices, setPageIndices] = useState([0, 9]);
     const [pageNumber, setPageNumber] = useState(1);
+
+    const pageCount = Math.ceil(appointmentList.length / 10);
 
     const listAppointments = 
         appointmentList.length > 0 ?
@@ -57,8 +63,8 @@ function AppointmentModal({
                 show={showAppointmentModal}
                 onHide={closeModal}
             >
-                <Modal.Header>
-                    <p className="modal-header-text">Available Appointments</p>
+                <Modal.Header closeButton>
+                    <p className="modal-text">Available Appointments</p>
                 </Modal.Header>
 
                 <Modal.Body>
@@ -68,16 +74,26 @@ function AppointmentModal({
                     {
                         appointmentList.length > 10 ? 
                             <div id="page-number-holder">
-                                <button onClick={() => goBack()}>Back</button>
+                                {
+                                    pageNumber === 1 ?
+                                        <button className="greyed-out-button" disabled>Back</button>
+                                            :
+                                        <button className="search-button" onClick={() => goBack()}>Back</button>
+                                }
                                 <p>{pageNumber} / {pageCount}</p>
-                                <button onClick={() => nextPage()}>Next</button>
+                                { 
+                                    pageNumber === pageCount ? 
+                                        <button className="greyed-out-button" disabled>Next</button>
+                                            :
+                                        <button className="search-button" onClick={() => nextPage()}>Next</button>
+                                }
                             </div> : <></>
                     }
 
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <button className="search-button" onClick={() => closeModal()}>Close</button>
+                    <button onClick={() => handleBook()} className="search-button" id="book-button">Book Now</button>
                 </Modal.Footer>
             </Modal>
         </>

@@ -15,9 +15,14 @@ function AppointmentInRange( {
 } ) {
 
     const [showScanModal, setShowScanModal] = useState(false);
+    const ttpURL = "https://ttp.cbp.dhs.gov/schedulerui/schedule-interview/location?lang=en&vo=true";
 
+    function handleBook() {
+        window.open(ttpURL, "_blank");
+    }
+    
     if (locationId !== "default") {
-        if (nextAvailableInRange !== undefined && nextAvailableInRange.length !== 0) {
+        if (nextAvailableInRange !== undefined && nextAvailableInRange.length !== 0 && searchMode) {
             let appointmentInfo = styleTimestamp(nextAvailableInRange[0].startTimestamp);
             return (
                 <div id="search-results-container" className="card-container">
@@ -26,7 +31,9 @@ function AppointmentInRange( {
                     <div>
                         <AppointmentModal 
                             appointmentList={appointmentList}
+                            ttpURL={ttpURL}
                         />
+                        <button onClick={() => handleBook()} className="search-button" id="book-button">Book Now</button>
                     </div>
                 </div>
             )
