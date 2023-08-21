@@ -1,6 +1,7 @@
 import AppointmentInRange from "./AppointmentInRange";
 import { useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
+import Alert from "react-bootstrap/Alert";
 
 function DateSelector( { 
     getCurrentDate, 
@@ -18,6 +19,7 @@ function DateSelector( {
     setSearchMode,
     appointmentList
 } ) {
+    const [showError, setShowError] = useState(false);
 
     function handleRefresh() {
         setSearchState(true);
@@ -27,16 +29,24 @@ function DateSelector( {
     }
 
     function handleSearch() {
-        setSearchMode(true);
-        handleRefresh();
-        fetchNextAvailableInRange(locationId, startDate, endDate);
+        let start = new Date(`${startDate}T00:00:01`);
+        let end = new Date(`${endDate}T23:59:59`);
+
+        if (start > end) {
+            setShowError(true);
+            return;
+        } else {
+            setSearchMode(true);
+            handleRefresh();
+            fetchNextAvailableInRange(locationId, startDate, endDate);
+        }
     };
 
     const [searchState, setSearchState] = useState(false);
 
     if (locationId !== "default") {
         return(
-            <div>    
+            <div id="search-container">    
                 <div id="date-selectors-container">
                     <p>Search for an Appointment</p>
                     <div id="date-selectors">
@@ -51,6 +61,14 @@ function DateSelector( {
                         <button type="button" className="search-button" onClick={() => handleSearch()}>Search</button>
                     </div>
                 </div>
+                {
+                        showError ? 
+                                <div className="error-container">
+                                    <p className="error-text">Your start date must occur before your end date.</p>
+                                    <button className="search-button" onClick={() => setShowError(false)}>X</button>
+                                </div>
+                                : <></>
+                }
                 {
                     searchState ?
                         <div id="search-results-container" className="card-container">

@@ -101,6 +101,8 @@ function ScanModal({
             <Modal
                 show={showScanModal}
                 onHide={hideScanModal}
+                backdrop="static"
+                keyboard={false}
             >
                 <Modal.Header>
                     <p className="modal-text">Searching for your appointment now!</p>
