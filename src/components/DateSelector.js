@@ -1,7 +1,6 @@
 import AppointmentInRange from "./AppointmentInRange";
 import { useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import Alert from "react-bootstrap/Alert";
 
 function DateSelector( { 
     getCurrentDate, 
@@ -50,15 +49,11 @@ function DateSelector( {
                 <div id="date-selectors-container">
                     <p>Search for an Appointment</p>
                     <div id="date-selectors">
-                        <label>
-                            <div className="date-label">Earliest:</div>
-                            <input type="date" defaultValue={getCurrentDate()} max={startDateMax} min={getCurrentDate()} onChange={(e) => startDateClicked(e.target.value)}/>
-                        </label>
-                        <label>
-                            <div className="date-label">Latest:</div>
-                            <input type="date" defaultValue={getCurrentDate()} min={endDateMin} onChange={(e) => endDateClicked(e.target.value)}/>
-                        </label>
-                        <button type="button" className="search-button" onClick={() => handleSearch()}>Search</button>
+                        <div className="date-label">Earliest:</div>
+                        <input type="date" defaultValue={getCurrentDate()} max={startDateMax} min={getCurrentDate()} onChange={(e) => startDateClicked(e.target.value)}/>
+                        <div className="date-label">Latest:</div>
+                        <input type="date" defaultValue={getCurrentDate()} min={endDateMin} onChange={(e) => endDateClicked(e.target.value)}/>
+                        <button type="button" id="date-search-button" className="search-button" onClick={() => handleSearch()}>Search</button>
                     </div>
                 </div>
                 {

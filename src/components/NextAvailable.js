@@ -41,26 +41,26 @@ function NextAvailable( {
         if (nextAvailable.length !== 0) {
             let appointmentInfo = nextAvailable.map((appointment) => styleTimestamp(appointment.startTimestamp));
             return (
-                <div>
-                    <div id="next-available-container" className="card-container">
-                        {
-                            refreshState ?
-                                <Spinner variant="border" role="info"/>
-                                    :
-                                <>
-                                    <p>Next Available Appointment:</p>
-                                    <p>{ appointmentInfo }</p>
-                                    <div id="next-available-button-container">
-                                        <button id="refresh-button" className="search-button" onClick={() => handleRefresh()}>Refresh</button>
-                                        <button className="search-button" id="book-button" onClick={() => handleBook()}>Book Now</button>
-                                    </div>
-                                    <div id="scan-message-container">
-                                        <p>Need an appointment sooner? Select your dates and use our scan feature below.</p>
-                                    </div>  
-                                </>
-                        }
-                    </div>
-                    <div>
+                    <>
+                        <div id="next-available-container" className="card-container">
+                            {
+                                refreshState ?
+                                    <Spinner variant="border" role="info"/>
+                                        :
+                                    <>
+                                        <p>Next Available Appointment:</p>
+                                        <p>{ appointmentInfo }</p>
+                                        <div id="next-available-button-container">
+                                            <button id="refresh-button" className="search-button" onClick={() => handleRefresh()}>Refresh</button>
+                                            <button className="search-button" id="book-button" onClick={() => handleBook()}>Book Now</button>
+                                        </div>
+                                        <div id="scan-message-container">
+                                            <p>Need an appointment sooner? Select your dates and use our scan feature below.</p>
+                                        </div>  
+                                    </>
+                            }
+                        </div>
+
                         <DateSelector 
                             locationId={locationId} 
                             startDateClicked={startDateClicked} 
@@ -77,8 +77,7 @@ function NextAvailable( {
                             setSearchMode={setSearchMode}
                             appointmentList={appointmentList}
                         />
-                    </div>
-                </div>
+                    </>
                 );
         } else {
             return (

@@ -28,7 +28,7 @@ function AppointmentInRange( {
                 <div id="search-results-container" className="card-container">
                     <p>Next Available Appointment in Range:</p>
                     <p>{appointmentInfo}</p>
-                    <div>
+                    <div id="next-available-buttons-container">
                         <AppointmentModal 
                             appointmentList={appointmentList}
                             ttpURL={ttpURL}

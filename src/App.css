@@ -1,4 +1,9 @@
 #logo {
+  @media (max-width: 480px) {
+    height: 45px;
+    padding: 4px 0 2px 8px;
+  }
+
   padding: 8px 0 4px 16px;
   height: 60px;
 }
@@ -13,50 +18,58 @@
 
 #location-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  margin: 16px 30% 0;
   box-shadow: 0 2px 4px #69E9F5;
   border-radius: 16px;
+
+  @media (max-width: 480px) {
+    margin: 8px 0 0;
+    width: 400px;
+  }
+
+  margin: 16px 0 0;
   width: 600px;
 }
 
 #filtered-container {
   display: flex;
   flex-direction: row;
-  margin: 16px 30% 0;
+
+  @media (max-width: 480px) {
+    margin: 8px 0 0;
+    gap: 4px;
+  }
+
+  margin: 16px 0 0;
   gap: 8px;
 }
 
-#state-selector-container {
-  width: 30%;
-  justify-content: center;
-  box-shadow: 0 2px 4px #69E9F5;
-  border-radius: 16px;
-}
-
-#filtered-location-selector-container {
-  width: 70%;
-  justify-content: center;
-  box-shadow: 0 2px 4px #69E9F5;
-  border-radius: 16px;
-}
-
 #location-selector {
+  @media (max-width: 480px) {
+    width: 400px;
+    font-size: 12px;
+  }
+
   display: flex;
   flex-direction: row;
   text-align: center;
   border-radius: 16px;
   -webkit-appearance: none;
   -moz-appearance: none;
-  width: 100%;
-  padding: 4px 4px;
+  width: 600px;
+  padding: 4px;
   font-family: Verdana;
   color: #645FCD;
-  font-size: small;
+  font-size: 14px;
 }
 
-#state-selector{
+#state-selector {
+  @media (max-width: 480px) {
+    width: 75px;
+    font-size: 12px;
+  }
+
   display: flex;
   flex-direction: row;
   text-align: center;
@@ -64,13 +77,20 @@
   border: 1px solid #645FCD;
   -webkit-appearance: none;
   -moz-appearance: none;
-  padding: 4px 4px;
-  width: 100%;
+  padding: 4px;
+  width: 125px;
   font-family: Verdana;
   color: #645FCD;
+  justify-content: center;
+  box-shadow: 0 2px 4px #69E9F5;
 }
 
 #filtered-location-selector {
+  @media (max-width: 480px) {
+    width: 225px;
+    font-size: 12px;
+  }
+  
   display: flex;
   flex-direction: row;
   text-align: center;
@@ -78,16 +98,25 @@
   border: 1px solid #645FCD;
   -webkit-appearance: none;
   -moz-appearance: none;
-  width: 100%;
-  padding: 4px 4px;
+  width: 460px;
+  padding: 4px;
   font-family: Verdana;
   color: #645FCD;
+  justify-content: center;
+  box-shadow: 0 2px 4px #69E9F5;
 }
 
-#app-body{
+#app-body {
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
+
   font-family: Verdana;
   color: #645FCD;
-  font-size: small;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 body {
@@ -96,15 +125,21 @@ body {
 }
 
 .card-container {
+  @media (max-width: 480px) {
+    margin: 12px 0 0;
+    padding: 6px;
+    width: 400px;
+  }
+
   display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;
   font-family: Verdana;
-  margin: 16px 30% 0px;
+  margin: 16px 0 0;
   border: 1px #645FCD solid;
   border-radius: 16px;
-  padding: 8px;
+  padding: 12px;
   box-shadow: 0 2px 4px #69E9F5;
   text-align: center;
   width: 600px;
@@ -115,6 +150,11 @@ p {
 }
 
 #date-selectors-container {
+  @media (max-width: 480px) {
+    margin: 8px 0 0;
+    width: 400px;
+  }
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -123,30 +163,51 @@ p {
 }
 
 #date-selectors-container p {
+  @media (max-width: 480px) {
+    margin: 0 0 8px !important;
+  }
+
   margin: 0 0 16px !important;
 }
 
 #date-selectors {
+  @media (max-width: 480px) {
+    column-gap: 8px;
+    width: 400px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   display: flex;
   flex-direction: row;
   align-content: center;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  row-gap: 12px;
   column-gap: 16px;
-  width: 100%;
+  width: 600px;
+}
+
+#date-search-button {
+  @media (max-width: 480px) {
+    margin: 4px 0 0;
+  }
 }
 
 #date-selectors input {
+
+  @media (max-width: 480px) {
+    width: 250px;
+    padding: 2px 2px;
+  }
+
   text-align: center;
   color: #645FCD;
-  margin: 0 0 0 8px;
   padding: 4px 4px;
   border-radius: 16px;
   border: 1px solid #645FCD;
   box-shadow: 0 2px 4px #69E9F5;
-  flex: 1;
   font-family: Verdana;
+  width: 150px;
 }
 
 label {
@@ -154,7 +215,6 @@ label {
   display: flex;
   flex-direction: row;
   align-items: center;
-
 }
 
 #state-filter-checkbox {
@@ -165,10 +225,17 @@ label {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  @media (max-width: 480px) {
+    margin: 8px 0;
+  }
   margin: 16px 0;
 }
 
 #state-filter-switch-container {
+  @media (max-width: 480px) {
+    margin: 8px 0 0;
+  }
+
   margin: 16px 0 0;
   display: flex;
   align-items: center;
@@ -205,6 +272,11 @@ label {
   padding: 8px;
   box-shadow: 0 2px 4px #69E9F5;
   text-align: center;
+  
+  @media (max-width: 480px) {
+    margin: 4px;
+  }
+  
   margin: 8px;
 }
 
@@ -235,7 +307,13 @@ label {
 #next-available-container {
   display: flex;
   justify-content: center;
-  height: 125px;
+  height: fit-content;
+
+  @media (max-width: 480px) {
+    width: 400px;
+    gap: 2px;
+  }
+
   width: 600px;
   gap: 4px;
 }
@@ -243,7 +321,13 @@ label {
 #search-results-container {
   display: flex;
   justify-content: center;
-  height: 100px;
+  height: fit-content;
+  
+  @media (max-width: 480px) {
+    width: 400px;
+    gap: 2px;
+  }
+
   width: 600px;
   gap: 8px;
 }
@@ -257,6 +341,11 @@ label {
   text-align: center;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 480px) {
+    gap: 4px;
+  }
+
   gap: 8px;
 }
 
@@ -265,12 +354,22 @@ label {
 }
 
 #book-button {
+  @media (max-width: 480px) {
+    margin: 0 0 0 4px;
+  }
+
   margin: 0 0 0 8px;
 }
 
 #page-number-holder {
   display: flex;
   justify-content: center;
+
+  @media (max-width: 480px) {
+    margin: 8px 0 0;
+    gap: 4px;
+  }
+
   margin: 16px 0 0;
   gap: 8px;
 }
@@ -290,6 +389,12 @@ label {
 }
 
 .error-container {
+  @media (max-width: 480px) {
+    margin: 9px 0 0;
+    gap: 4px;
+    width: 400px;
+  }
+
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -297,7 +402,7 @@ label {
   margin: 18px 0 0;
   border: 1px solid #645FCD;
   font-weight: bold;
-  width: 420px;
+  width: 600px;
   padding: 8px 12px;
   gap: 8px;
   border-radius: 8px;

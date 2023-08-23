@@ -57,20 +57,17 @@ function LocationSelector({
     } else {
         return (
             <div id="filtered-container">
-                <div id="state-selector-container">
-                    <select onChange={(e) => setStateSelected(e.target.value)} id="state-selector"> 
-                        <option value="default">Select State</option>
-                        {createValidStates} 
-                    </select>
-                </div>
-                <div id="filtered-location-selector-container">
-                    <select onChange={(e) => locationClicked(e)} id="filtered-location-selector">
-                        <option value="default">Select Interview Center</option>
-                        {createSortedLocationElements}
-                    </select>
-                </div>
-            </div>)
-    };
-};
+                <select onChange={(e) => setStateSelected(e.target.value)} id="state-selector"> 
+                    <option value="default">Select State</option>
+                    {createValidStates} 
+                </select>
+                <select onChange={(e) => locationClicked(e)} id="filtered-location-selector">
+                    <option value="default">Select Interview Center</option>
+                    {createSortedLocationElements}
+                </select>
+            </div>
+        );
+    }
+}
 
 export default LocationSelector;
