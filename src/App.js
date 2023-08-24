@@ -58,8 +58,9 @@ function App() {
     }
 
     useEffect(() => {
-        if (Notification.permission === "granted") { setShowNotificationDisclaimer(false); }
-
+        if (Notification.permission === "granted") { 
+            setShowNotificationDisclaimer(false); 
+        }
         fetch('https://ttp.cbp.dhs.gov/schedulerapi/locations/?temporary=false&inviteOnly=false&operational=true&serviceName=Global%20Entry')
         .then(response => response.json())
         .then(res => {
