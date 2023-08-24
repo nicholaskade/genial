@@ -22,6 +22,10 @@ function App() {
     const [appointmentList, setAppointmentList] = useState(undefined);
     const [showNotificationDisclaimer, setShowNotificationDisclaimer] = useState(true);
 
+    function handleResumeClick() {
+        window.open("https://www.nicholasnip.com", "_blank");
+    }
+
     function startDateClicked(value){
         setStartDate(value);
         setEndDateMin(value);
@@ -54,6 +58,8 @@ function App() {
     }
 
     useEffect(() => {
+        if (Notification.permission === "granted") { setShowNotificationDisclaimer(false); }
+
         fetch('https://ttp.cbp.dhs.gov/schedulerapi/locations/?temporary=false&inviteOnly=false&operational=true&serviceName=Global%20Entry')
         .then(response => response.json())
         .then(res => {
@@ -168,6 +174,9 @@ function App() {
                     appointmentList={appointmentList}
                 />
                 
+            </div>
+            <div id="footer">
+                <button onClick={() => handleResumeClick()} className="search-button" id="personal-site-link" href="www.nicholasnip.com">About My Developer</button>
             </div>
 
             <Modal 

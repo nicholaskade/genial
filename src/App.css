@@ -409,3 +409,26 @@ label {
   flex-direction: column;
   align-items: center;
 }
+
+#footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 8px 0 #69E9F5;  
+  position: fixed;
+  bottom: 0;
+  z-index: 1000;
+  width: 100%;
+  background-color: #ffffff;
+
+  @media screen and (max-width: 480px) {
+    height: 45px;
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: 481px) {
+    height: 60px;
+    font-size: 16px;
+  }
+}
