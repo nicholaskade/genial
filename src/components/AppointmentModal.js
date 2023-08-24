@@ -62,6 +62,7 @@ function AppointmentModal({
             <Modal
                 show={showAppointmentModal}
                 onHide={closeModal}
+                dialogClassName="appointment-modal"
             >
                 <Modal.Header closeButton>
                     <p className="modal-text">Available Appointments</p>

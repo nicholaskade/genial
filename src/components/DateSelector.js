@@ -41,6 +41,10 @@ function DateSelector( {
         }
     };
 
+    function handleDatePickerClick(event) {
+        event.target.showPicker();
+    }
+
     const [searchState, setSearchState] = useState(false);
 
     if (locationId !== "default") {
@@ -50,9 +54,9 @@ function DateSelector( {
                     <p>Search for an Appointment</p>
                     <div id="date-selectors">
                         <div className="date-label">Earliest:</div>
-                        <input type="date" defaultValue={getCurrentDate()} max={startDateMax} min={getCurrentDate()} onChange={(e) => startDateClicked(e.target.value)}/>
+                        <input id="start-date" type="date" defaultValue={getCurrentDate()} max={startDateMax} min={getCurrentDate()} onChange={(e) => startDateClicked(e.target.value)} onClick={(e) => handleDatePickerClick(e)}/>
                         <div className="date-label">Latest:</div>
-                        <input type="date" defaultValue={getCurrentDate()} min={endDateMin} onChange={(e) => endDateClicked(e.target.value)}/>
+                        <input id="end-date" type="date" defaultValue={getCurrentDate()} min={endDateMin} onChange={(e) => endDateClicked(e.target.value)} onClick={(e) => handleDatePickerClick(e)}/>
                         <button type="button" id="date-search-button" className="search-button" onClick={() => handleSearch()}>Search</button>
                     </div>
                 </div>

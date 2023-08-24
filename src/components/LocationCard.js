@@ -14,7 +14,7 @@ function LocationCard({ locations, locationId }) {
         if (location.id === parseInt(locationId)) {
             let phoneNumber = phoneNumberStyler(location.phoneNumber);
             return (
-                <div className="card-container" key={i}>
+                <div id="location-card" className="card-container" key={i}>
                     <p>{location.name}</p>
                     <p>{location.address}</p>
                     { addressAdditional(location) }

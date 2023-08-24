@@ -1,7 +1,7 @@
 import { styleTimestamp } from "../utils/AppointmentTimestampStyler";
 import Spinner from "react-bootstrap/Spinner";
 import DateSelector from "./DateSelector";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function NextAvailable( { 
     nextAvailable, 
@@ -23,6 +23,13 @@ function NextAvailable( {
 
     const [refreshState, setRefreshState] = useState(false);
     const ttpURL = "https://ttp.cbp.dhs.gov/schedulerui/schedule-interview/location?lang=en&vo=true";
+
+    useEffect(() => {
+        setRefreshState(true);
+        setTimeout(() => {
+            setRefreshState(false);
+        }, 1000);
+    }, [locationId]);
 
     function handleRefresh() {
         setRefreshState(true);

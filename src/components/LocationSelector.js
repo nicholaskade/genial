@@ -3,7 +3,8 @@ function LocationSelector({
     locationClicked, 
     stateSorter, 
     setStateSelected, 
-    stateSelected 
+    stateSelected,
+    setLocationId
 }) {
     let validStates = [];
     
@@ -19,7 +20,7 @@ function LocationSelector({
         if (location.countryCode === "US" && location.shortName !== "Permanently Closed") {
             return (
                 <option key={location.id} value={location.id}>
-                    {`${location.state}: ${location.name}`}
+                    { `${location.state}: ${location.name}` }
                 </option>
             )
         }
@@ -27,8 +28,8 @@ function LocationSelector({
 
     const createValidStates = validStates.map((state, i) => {
         return (
-            <option key={i} value={state}>
-                {state}
+            <option key={i} value={state} onClick={(e) => setStateSelected(e.target.value)}>
+                { state }
             </option>
         )
     });
@@ -37,7 +38,7 @@ function LocationSelector({
         if (location.countryCode === "US" && location.shortName !== "Permanently Closed" && location.state === stateSelected) {
             return (
                 <option key={location.id} value={location.id}>
-                    {location.name}
+                    { location.name }
                 </option>
             )
         }
@@ -49,7 +50,7 @@ function LocationSelector({
                 <div id="location-container">
                     <select onChange={(e) => locationClicked(e)} id="location-selector">
                         <option value="default">Select Interview Center</option>
-                        {createLocationElementsWithAbbr}
+                        { createLocationElementsWithAbbr }
                     </select>
                 </div>
             </>
@@ -59,11 +60,11 @@ function LocationSelector({
             <div id="filtered-container">
                 <select onChange={(e) => setStateSelected(e.target.value)} id="state-selector"> 
                     <option value="default">Select State</option>
-                    {createValidStates} 
+                    { createValidStates } 
                 </select>
                 <select onChange={(e) => locationClicked(e)} id="filtered-location-selector">
                     <option value="default">Select Interview Center</option>
-                    {createSortedLocationElements}
+                    { createSortedLocationElements }
                 </select>
             </div>
         );

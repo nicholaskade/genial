@@ -150,6 +150,7 @@ function App() {
                     locationClicked={locationClicked} 
                     setStateSelected={setStateSelected} 
                     stateSelected={stateSelected}
+                    setLocationId={setLocationId}
                 />
 
                 <LocationCard 
